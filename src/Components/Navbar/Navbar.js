@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css'; 
+
 const Navbar = () => {
   const [menuActive, setMenuActive] = useState(false);
 
@@ -11,7 +13,7 @@ const Navbar = () => {
     <nav>
       {/* Logo section */}
       <div className="nav__logo">
-        <a href="../Landing_Page/LandingPage.html">
+        <Link to="/">
           StayHealthy
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +30,7 @@ const Navbar = () => {
               </g>
             </g>
           </svg>
-        </a>
+        </Link>
         <span>.</span>
       </div>
 
@@ -40,20 +42,20 @@ const Navbar = () => {
       {/* Navigation links */}
       <ul className={`nav__links ${menuActive ? 'active' : ''}`}>
         <li className="link">
-          <a href="../Landing_Page/LandingPage.html">Home</a>
+          <Link to="/">Home</Link>
         </li>
         <li className="link">
-          <a href="#">Appointments</a>
+          <Link to="#">Appointments</Link>
         </li>
         <li className="link">
-          <a href="../Sign_Up/Sign_Up.html">
+          <Link to="/signup">
             <button className="btn1">Sign Up</button>
-          </a>
+          </Link>
         </li>
         <li className="link">
-          <a href="../Login/Login.html">
+          <Link to="/login">
             <button className="btn1">Login</button>
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

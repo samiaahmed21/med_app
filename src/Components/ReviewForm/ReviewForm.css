@@ -1,8 +1,10 @@
 .review-container {
-    width: 80%;
+    width: 90%;
+    max-width: 800px; /* prevent excessive width on large screens */
     margin: 20px auto;
     font-family: Arial, sans-serif;
   }
+  
   .review-container h2 {
     text-align: left;
     margin-bottom: 15px;
@@ -20,8 +22,9 @@
     border-bottom: 1px solid #ccc;
     border-left: none;
     border-right: none;
-    padding: 10px;
+    padding: 8px 6px; /* reduced padding to save space */
     text-align: left;
+    vertical-align: middle;
   }
   
   .review-table th {
@@ -32,9 +35,10 @@
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 6px 12px;
+    padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 14px;
   }
   
   .review-table button:hover {
@@ -45,50 +49,55 @@
     margin-top: 15px;
     padding: 10px;
     border: 1px solid #ccc;
+    background-color: #fafafa;
+    border-radius: 6px;
   }
   
   .feedback-modal {
-    padding: 20px;
-    background: #fff;
-    border-radius: 12px;
-    width: 400px;
+    background: transparent; /* remove white background */
+    padding: 0; /* remove extra padding */
+    border-radius: 0; /* remove rounded corners */
+    width: 350px; /* keep width if needed */
     max-width: 90%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: none; /* remove shadow */
   }
+  
   
   .feedback-modal h3 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-weight: bold;
+    font-size: 18px;
   }
   
   .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
   }
   
   .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     font-weight: 500;
+    font-size: 14px;
   }
   
   .form-group input,
   .form-group textarea {
     width: 100%;
-    padding: 8px 10px;
+    padding: 6px 8px;
     border: 1px solid #ccc;
-    border-radius: 6px;
+    border-radius: 5px;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 13px;
   }
   
   .form-group textarea {
     resize: vertical;
-    min-height: 60px;
+    min-height: 50px;
   }
   
   .star-rating {
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
   }
   
@@ -101,10 +110,11 @@
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 0;
-    border-radius: 8px;
-    font-size: 16px;
+    padding: 8px 0;
+    border-radius: 6px;
+    font-size: 15px;
     cursor: pointer;
+    margin-top: 8px;
   }
   
   .submit-btn:hover {

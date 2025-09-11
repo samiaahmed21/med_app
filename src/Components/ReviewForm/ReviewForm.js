@@ -59,6 +59,19 @@ const ReviewForm = ({ reviews }) => {
                   trigger={<button disabled={review.reviewGiven}>Click Here</button>}
                   modal
                   nested
+                  contentStyle={{
+                    background: 'white',       // keep white background if desired
+                    padding: '10px',           // proper padding
+                    boxShadow: 'none',         // remove shadow
+                    borderRadius: '0',         // remove rounded corners
+                    width: '350px',            // optional width
+                    maxWidth: '90%',
+                    position: 'absolute',      // position absolutely
+                    top: '50%',                // vertical center
+                    left: '50%',               // horizontal center
+                    transform: 'translate(-50%, -50%)', // adjust to truly center
+                  }}
+                  
                 >
                   {(close) => (
                     <div className="feedback-modal">

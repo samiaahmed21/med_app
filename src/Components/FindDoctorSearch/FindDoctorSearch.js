@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './FindDoctorSearch.css';
 
 const initSpeciality = [
@@ -8,6 +8,15 @@ const initSpeciality = [
 const FindDoctorSearch = ({ onSearch }) => {
   const [searchDoctor, setSearchDoctor] = useState('');
   const [showList, setShowList] = useState(false);
+
+  // debounce search input to prevent too many updates
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (onSearch) onSearch(searchDoctor);
+    }, 200); // 200ms delay
+
+    return () => clearTimeout(timer);
+  }, [searchDoctor, onSearch]);
 
   const handleSelect = (speciality) => {
     setSearchDoctor(speciality);
@@ -23,10 +32,7 @@ const FindDoctorSearch = ({ onSearch }) => {
         value={searchDoctor}
         onFocus={() => setShowList(true)}
         onBlur={() => setTimeout(() => setShowList(false), 100)} // allows click before hiding
-        onChange={(e) => {
-          setSearchDoctor(e.target.value);
-          if (onSearch) onSearch(e.target.value);
-        }}
+        onChange={(e) => setSearchDoctor(e.target.value)}
         className="search-doctor-input-box"
       />
 

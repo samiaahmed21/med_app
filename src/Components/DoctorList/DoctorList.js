@@ -1,3 +1,4 @@
+// DoctorList.js
 import React, { useState } from 'react';
 import DoctorCard from '../DoctorCard/DoctorCard';
 import FindDoctorSearch from '../FindDoctorSearch/FindDoctorSearch';
@@ -11,17 +12,13 @@ const doctorsData = [
 const DoctorList = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Filter doctors based on search input
   const filteredDoctors = doctorsData.filter(doctor =>
     doctor.speciality.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div style={{ paddingTop: '120px', textAlign: 'center' }}>
-      {/* Search Bar */}
       <FindDoctorSearch onSearch={setSearchTerm} />
-
-      {/* Doctor Cards */}
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', marginTop: '20px' }}>
         {filteredDoctors.map((doctor, index) => (
           <DoctorCard key={index} {...doctor} />

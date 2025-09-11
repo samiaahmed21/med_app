@@ -1,20 +1,21 @@
+// DoctorCard.js
 import React from 'react';
-import DoctorCard from '../DoctorCard/DoctorCard';
+import './DoctorCard.css';
 
-const doctors = [
-  { name: 'Dr. Alice Smith', speciality: 'Dentist', experience: 8, ratings: 4.5, profilePic: process.env.PUBLIC_URL + '/images/doc_icon.png' },
-  { name: 'Dr. John Doe', speciality: 'Dermatologist', experience: 12, ratings: 4.8, profilePic: process.env.PUBLIC_URL + '/images/doc_icon2.png' },
-  { name: 'Dr. Maria Khan', speciality: 'Gynecologist', experience: 10, ratings: 4.7, profilePic: process.env.PUBLIC_URL + '/images/doc_icon3.png' },
-];
-
-const DoctorList = () => {
+const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', marginTop: '120px' }}>
-      {doctors.map((doctor, index) => (
-        <DoctorCard key={index} {...doctor} />
-      ))}
+    <div className="doctor-card-container">
+      <div className="doctor-card-profile-image-container">
+        <img src={profilePic} alt={name} />
+      </div>
+      <div className="doctor-card-details">
+        <div className="doctor-card-detail-name">{name}</div>
+        <div className="doctor-card-detail-speciality">{speciality}</div>
+        <div className="doctor-card-detail-experience">{experience} years</div>
+        <div className="doctor-card-detail-ratings">{ratings} ★</div>
+      </div>
     </div>
   );
 };
 
-export default DoctorList;
+export default DoctorCard;

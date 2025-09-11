@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import DoctorCard from '../DoctorCard/DoctorCard';
 import FindDoctorSearch from '../FindDoctorSearch/FindDoctorSearch';
+import ReviewForm from '../ReviewForm/ReviewForm';
 
 const doctorsData = [
   { name: 'Dr. Alice Smith', speciality: 'Dentist', experience: 8, ratings: 4.5, profilePic: process.env.PUBLIC_URL + '/images/doc_icon.png' },
@@ -11,7 +12,11 @@ const doctorsData = [
 
 const DoctorList = () => {
   const [searchTerm, setSearchTerm] = useState('');
-
+  const sampleReviews = [
+    { doctorName: 'Dr. Alice Smith', speciality: 'Dentist', reviewGiven: true },
+    { doctorName: 'Dr. Bob Johnson', speciality: 'General Physician', reviewGiven: false },
+    { doctorName: 'Dr. Carol Lee', speciality: 'Gynecologist', reviewGiven: true },
+  ];
   const filteredDoctors = doctorsData.filter(doctor =>
     doctor.speciality.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -24,6 +29,7 @@ const DoctorList = () => {
       <DoctorCard key={index} {...doctor} />
     ))}
   </div>
+  <ReviewForm reviews={sampleReviews} />
 </div>
 
   );

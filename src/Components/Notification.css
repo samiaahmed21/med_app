@@ -1,0 +1,29 @@
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #007bff; /* Blue background */
+    color: white;white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000;
+    animation: slideIn 0.5s ease-out;
+  }
+  
+  .notification-container h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+  }
+  
+  .notification-container p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(100%); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  

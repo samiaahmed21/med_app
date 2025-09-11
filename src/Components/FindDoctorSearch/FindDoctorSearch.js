@@ -1,52 +1,63 @@
-import React, { useState, useEffect } from 'react';
+// FindDoctorSearch.js
+import React, { useState } from 'react';
 import './FindDoctorSearch.css';
 
 const initSpeciality = [
-  'Dentist', 'Gynecologist', 'General Physician', 'Dermatologist', 'ENT Specialist', 'Homeopath', 'Ayurveda'
+  'Dentist', 
+  'Gynecologist/Obstetrician', 
+  'General Physician', 
+  'Dermatologist', 
+  'Ear-Nose-Throat (ENT) Specialist', 
+  'Homeopath', 
+  'Ayurveda'
 ];
 
 const FindDoctorSearch = ({ onSearch }) => {
-  const [searchDoctor, setSearchDoctor] = useState('');
-  const [showList, setShowList] = useState(false);
-
-  // debounce search input to prevent too many updates
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (onSearch) onSearch(searchDoctor);
-    }, 200); // 200ms delay
-
-    return () => clearTimeout(timer);
-  }, [searchDoctor, onSearch]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showResults, setShowResults] = useState(false);
 
   const handleSelect = (speciality) => {
-    setSearchDoctor(speciality);
-    setShowList(false);
-    if (onSearch) onSearch(speciality);
+    setSearchTerm(speciality);
+    setShowResults(false);
+    onSearch(speciality);
   };
 
-  return (
-    <div className="finddoctor" style={{ position: 'relative', display: 'inline-block' }}>
-      <input
-        type="text"
-        placeholder="Search doctors by specialty"
-        value={searchDoctor}
-        onFocus={() => setShowList(true)}
-        onBlur={() => setTimeout(() => setShowList(false), 100)} // allows click before hiding
-        onChange={(e) => setSearchDoctor(e.target.value)}
-        className="search-doctor-input-box"
-      />
+  const filteredSpecialities = initSpeciality.filter(s =>
+    s.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-      {showList && (
-        <div className="search-doctor-input-results">
-          {initSpeciality
-            .filter(spec => spec.toLowerCase().includes(searchDoctor.toLowerCase()))
-            .map(spec => (
-              <div key={spec} className="search-doctor-result-item" onMouseDown={() => handleSelect(spec)}>
-                <span>{spec}</span>
-              </div>
-            ))}
+  return (
+    <div className="finddoctor">
+      <center>
+        <h2>Find a doctor</h2>
+        <div className="home-search-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div className="doctor-search-box">
+            <input
+              type="text"
+              className="search-doctor-input-box"
+              placeholder="Search doctors, clinics, hospitals, etc."
+              onFocus={() => setShowResults(true)}
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                onSearch(e.target.value); // update parent as typing
+              }}
+            />
+            <div className="search-doctor-input-results" hidden={!showResults}>
+              {filteredSpecialities.map((speciality) => (
+                <div
+                  className="search-doctor-result-item"
+                  key={speciality}
+                  onMouseDown={() => handleSelect(speciality)}
+                >
+                  <span>{speciality}</span>
+                  <span>SPECIALITY</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      )}
+      </center>
     </div>
   );
 };

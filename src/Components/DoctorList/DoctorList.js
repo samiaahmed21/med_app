@@ -18,13 +18,14 @@ const DoctorList = () => {
 
   return (
     <div style={{ paddingTop: '120px', textAlign: 'center' }}>
-      <FindDoctorSearch onSearch={setSearchTerm} />
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', marginTop: '20px' }}>
-        {filteredDoctors.map((doctor, index) => (
-          <DoctorCard key={index} {...doctor} />
-        ))}
-      </div>
-    </div>
+  <FindDoctorSearch onSearch={setSearchTerm} />
+  <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', marginTop: '20px' }}>
+    {filteredDoctors.map((doctor, index) => (
+      <DoctorCard key={index} {...doctor} />
+    ))}
+  </div>
+</div>
+
   );
 };
 

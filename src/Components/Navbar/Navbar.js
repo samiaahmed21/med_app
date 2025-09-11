@@ -69,6 +69,11 @@ const Navbar = () => {
         <li className="link">
           <Link to="#">Appointments</Link>
         </li>
+        <li className="link">
+          <Link to="/instant-consultation">
+            <button className="btn1">Instant Booking</button>
+          </Link>
+        </li>
 
         {userName ? (
           <>

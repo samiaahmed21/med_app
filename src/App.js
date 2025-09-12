@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        
+        <Notification/>
           <Routes>
             <Route path="/" element={<Landing_Page />} />
             <Route path="/signup" element={<Sign_Up />} />
@@ -22,6 +22,7 @@ function App() {
             <Route path="/profile" element={<ProfileCard />} />
             <Route path="/reports" element={<ReportLayout />} />          
             </Routes>
+            <Notification/>
       </BrowserRouter>
     </div>
   );

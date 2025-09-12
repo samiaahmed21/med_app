@@ -17,12 +17,13 @@
     "reactjs-popup": "^2.0.6",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+"scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build && rm -rdf server/build && mv build server/",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+},
+
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -43,6 +44,7 @@
   },
   "devDependencies": {
     "html-webpack-plugin": "^5.6.4",
-    "lodash.template": "^4.5.0"
+    "lodash.template": "^4.5.0",
+    "terser-webpack-plugin": "^5.3.14"
   }
 }

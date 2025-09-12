@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import DoctorCard from '../DoctorCard/DoctorCard';
 import FindDoctorSearch from '../FindDoctorSearch/FindDoctorSearch';
 import ReviewForm from '../ReviewForm/ReviewForm';
-
+import ProfileCard from "../ProfileCard/ProfileCard";
 const doctorsData = [
   { name: 'Dr. Alice Smith', speciality: 'Dentist', experience: 8, ratings: 4.5, profilePic: process.env.PUBLIC_URL + '/images/doc_icon.png' },
   { name: 'Dr. John Doe', speciality: 'Dermatologist', experience: 12, ratings: 4.8, profilePic: process.env.PUBLIC_URL + '/images/doc_icon2.png' },
@@ -30,6 +30,7 @@ const DoctorList = () => {
     ))}
   </div>
   <ReviewForm reviews={sampleReviews} />
+  <ProfileCard />
 </div>
 
   );

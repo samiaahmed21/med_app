@@ -6,15 +6,13 @@ import Login from './Components/Login/Login';
 import InstantConsultation from './Components/InstantConsultationBooking/InstantConsultation';
 import DoctorList from './Components/DoctorList/DoctorList';
 import Notification from './Components/Notification/Notification';
-
 import ProfileCard from './Components/ProfileCard/ProfileCard';
 import ReportLayout from './Components/ReportLayout';
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* Notification wraps Routes so it is visible on every page */}
-        <Notification>
+        
           <Routes>
             <Route path="/" element={<Landing_Page />} />
             <Route path="/signup" element={<Sign_Up />} />
@@ -24,7 +22,6 @@ function App() {
             <Route path="/profile" element={<ProfileCard />} />
             <Route path="/reports" element={<ReportLayout />} />          
             </Routes>
-        </Notification>
       </BrowserRouter>
     </div>
   );

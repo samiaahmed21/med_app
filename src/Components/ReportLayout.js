@@ -1,55 +1,18 @@
 import React, { useState } from "react";
-import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
 import "./ReportLayout.css";
 
 const ReportLayout = ({ reports }) => {
-  // Example existing reports (replace with API/props later)
+  // Example reports — replace with API/props if needed
   const defaultReports = [
     {
       title: "Blood Test",
       category: "Lab",
-      submittedReport: {
-        title: "CBC Report",
-        description: "Blood count analysis",
-        priority: 4,
-      },
-    },
-    {
-      title: "X-Ray",
-      category: "Radiology",
-      submittedReport: {
-        title: "Chest X-Ray",
-        description: "Mild infection detected",
-        priority: 3,
-      },
-    },
-    {
-      title: "MRI Scan",
-      category: "Radiology",
-      submittedReport: {
-        title: "Brain MRI",
-        description: "No abnormalities found",
-        priority: 5,
-      },
+      file: "/sample_report.pdf", // <-- points to public folder
     },
   ];
+  
 
   const [reportData] = useState(reports || defaultReports);
-
-  // 📥 Download report as .txt
-  const handleDownload = (report) => {
-    const content = `
-Report Title: ${report.submittedReport.title}
-Description: ${report.submittedReport.description}
-Priority: ${"★".repeat(report.submittedReport.priority)}
-`;
-    const blob = new Blob([content], { type: "text/plain" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = `${report.title}_report.txt`;
-    link.click();
-  };
 
   return (
     <div className="report-container">
@@ -71,35 +34,24 @@ Priority: ${"★".repeat(report.submittedReport.priority)}
               <td>{report.title}</td>
               <td>{report.category}</td>
               <td>
-                <Popup
-                  trigger={<button className="view-btn">View Report</button>}
-                  modal
-                  nested
-                  contentStyle={{
-                    background: "white",
-                    padding: "20px",
-                    borderRadius: "10px",
-                    width: "400px",
-                    maxWidth: "90%",
-                  }}
+                <button
+                  className="view-btn"
+                  onClick={() => window.open(report.file, "_blank")}
                 >
-                  <div>
-                    <h3>{report.submittedReport.title}</h3>
-                    <p>
-                      <strong>Description:</strong>{" "}
-                      {report.submittedReport.description}
-                    </p>
-                    <p>
-                      <strong>Priority:</strong>{" "}
-                      {"★".repeat(report.submittedReport.priority)}
-                    </p>
-                  </div>
-                </Popup>
+                  View Report
+                </button>
               </td>
               <td>
                 <button
                   className="download-btn"
-                  onClick={() => handleDownload(report)}
+                  onClick={() => {
+                    const link = document.createElement("a");
+                    link.href = report.file;
+                    link.download = `${report.title.replace(/\s+/g, "_")}.pdf`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}
                 >
                   Download Report
                 </button>

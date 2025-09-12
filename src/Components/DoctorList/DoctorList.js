@@ -13,9 +13,9 @@ const doctorsData = [
 const DoctorList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const sampleReviews = [
-    { doctorName: 'Dr. Alice Smith', speciality: 'Dentist', reviewGiven: true },
+    { doctorName: 'Dr. Alice Smith', speciality: 'Dentist', reviewGiven: false },
     { doctorName: 'Dr. Bob Johnson', speciality: 'General Physician', reviewGiven: false },
-    { doctorName: 'Dr. Carol Lee', speciality: 'Gynecologist', reviewGiven: true },
+    { doctorName: 'Dr. Carol Lee', speciality: 'Gynecologist', reviewGiven: false },
   ];
   const filteredDoctors = doctorsData.filter(doctor =>
     doctor.speciality.toLowerCase().includes(searchTerm.toLowerCase())

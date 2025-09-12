@@ -56,22 +56,29 @@ const ReviewForm = ({ reviews }) => {
               <td>{review.speciality}</td>
               <td>
                 <Popup
-                  trigger={<button disabled={review.reviewGiven}>Click Here</button>}
+                  trigger={
+                    <button
+                    disabled={review.reviewGiven}
+                    className={review.reviewGiven ? 'review-given' : ''}
+                  >
+                    {review.reviewGiven ? 'Review Given' : 'Click Here'}
+                  </button>
+                  
+                  }
                   modal
                   nested
                   contentStyle={{
-                    background: 'white',       // keep white background if desired
-                    padding: '10px',           // proper padding
-                    boxShadow: 'none',         // remove shadow
-                    borderRadius: '0',         // remove rounded corners
-                    width: '350px',            // optional width
+                    background: 'white',
+                    padding: '10px',
+                    boxShadow: 'none',
+                    borderRadius: '0',
+                    width: '350px',
                     maxWidth: '90%',
-                    position: 'absolute',      // position absolutely
-                    top: '50%',                // vertical center
-                    left: '50%',               // horizontal center
-                    transform: 'translate(-50%, -50%)', // adjust to truly center
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
                   }}
-                  
                 >
                   {(close) => (
                     <div className="feedback-modal">
@@ -117,7 +124,11 @@ const ReviewForm = ({ reviews }) => {
                   )}
                 </Popup>
               </td>
-              <td>{review.reviewGiven ? 'Yes' : 'No'}</td>
+              <td>
+                {review.reviewGiven && review.submittedReview
+                  ? review.submittedReview.review
+                  : 'No'}
+              </td>
             </tr>
           ))}
         </tbody>

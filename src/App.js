@@ -7,6 +7,8 @@ import InstantConsultation from './Components/InstantConsultationBooking/Instant
 import DoctorList from './Components/DoctorList/DoctorList';
 import Notification from './Components/Notification/Notification';
 
+import ProfileCard from './Components/ProfileCard/ProfileCard';
+import ReportLayout from './Components/ReportLayout';
 function App() {
   return (
     <div className="App">
@@ -19,7 +21,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/instant-consultation" element={<InstantConsultation />} />
             <Route path="/doctors" element={<DoctorList />} />
-          </Routes>
+            <Route path="/profile" element={<ProfileCard />} />
+            <Route path="/reports" element={<ReportLayout />} />          
+            </Routes>
         </Notification>
       </BrowserRouter>
     </div>

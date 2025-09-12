@@ -1,0 +1,123 @@
+/* Styling for the report container */
+.report-container {
+    width: 90%;
+    max-width: 800px; /* prevent excessive width on large screens */
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Styling for the report table */
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+}
+
+.report-table th,
+.report-table td {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-left: none;
+    border-right: none;
+    padding: 8px 6px; /* reduced padding to save space */
+    text-align: left;
+    vertical-align: middle;
+}
+
+.report-table th {
+    background-color: #f0f0f0;
+}
+
+.report-table button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.report-table button:hover {
+    background-color: #0056b3;
+}
+
+.submitted-report {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fafafa;
+    border-radius: 6px;
+}
+
+.report-modal {
+    background: transparent; /* remove white background */
+    padding: 0; /* remove extra padding */
+    border-radius: 0; /* remove rounded corners */
+    width: 350px; /* keep width if needed */
+    max-width: 90%;
+    box-shadow: none; /* remove shadow */
+}
+
+.report-modal h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 50px;
+}
+
+.star-rating {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.star-rating .filled {
+    color: #ffc107;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 0;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+.report-table button.report-given {
+    background-color: #b0b0b0; /* grey */
+    cursor: not-allowed;
+}

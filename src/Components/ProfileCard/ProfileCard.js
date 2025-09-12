@@ -70,17 +70,18 @@ const ProfileCard = () => {
   // Handle form submission to update profile
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const authtoken = sessionStorage.getItem("auth-token");
       const email = sessionStorage.getItem("email");
-
+  
       if (!authtoken || !email) {
         navigate("/login");
         return;
       }
-
+  
       const payload = { ...updatedDetails };
+  
       const response = await fetch(`${API_URL}/api/auth/user`, {
         method: "PUT",
         headers: {
@@ -90,12 +91,12 @@ const ProfileCard = () => {
         },
         body: JSON.stringify(payload),
       });
-
+  
       if (response.ok) {
         // Update session storage and state
         sessionStorage.setItem("name", updatedDetails.name);
         sessionStorage.setItem("phone", updatedDetails.phone);
-
+  
         setUserDetails(updatedDetails);
         setEditMode(false);
         alert("Profile Updated Successfully!");
@@ -105,9 +106,9 @@ const ProfileCard = () => {
       }
     } catch (error) {
       console.error(error);
+      alert("An error occurred while updating the profile. Please try again.");
     }
   };
-
   // Render the profile card
   return (
     <div className="profile-container">

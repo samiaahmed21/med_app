@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import ProfileCard from "../ProfileCard/ProfileCard";
 
 const Navbar = () => {
   const [menuActive, setMenuActive] = useState(false);
   const [userName, setUserName] = useState("");
-  const [showProfileCard, setShowProfileCard] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -32,12 +31,22 @@ const Navbar = () => {
   };
 
   const handleProfileClick = () => {
-    console.log("Clicked Hi, toggling profile card"); // Debug log
-    setShowProfileCard(prev => {
+    console.log("Clicked Hi, toggling dropdown"); // Debug log
+    setShowDropdown(prev => {
       const newValue = !prev;
-      console.log("showProfileCard set to:", newValue); // Debug log
+      console.log("showDropdown set to:", newValue); // Debug log
       return newValue;
     });
+  };
+
+  const handleProfileOption = () => {
+    navigate("/profile"); // Redirect to ProfileCard route
+    setShowDropdown(false);
+  };
+
+  const handleReportsOption = () => {
+    navigate("/reports"); // Redirect to Reports route
+    setShowDropdown(false);
   };
 
   return (
@@ -84,10 +93,11 @@ const Navbar = () => {
               <span className="welcome-text" onClick={handleProfileClick}>
                 Hi, {userName}
               </span>
-              {showProfileCard && (
-                <div className="profile-card active">
-                  <ProfileCard />
-                </div>
+              {showDropdown && (
+                <ul className="dropdown-menu">
+                  <li onClick={handleProfileOption}>Your Profile</li>
+                  <li onClick={handleReportsOption}>Your Reports</li>
+                </ul>
               )}
             </li>
             <li className="link">

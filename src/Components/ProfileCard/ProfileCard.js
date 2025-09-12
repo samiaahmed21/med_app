@@ -111,55 +111,54 @@ const ProfileCard = () => {
   };
   // Render the profile card
   return (
-    <div className="profile-container">
-      {editMode ? (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Email
+    <div className="pageWrapper">
+      <div className="container">
+        {editMode ? (
+          <form className="form" onSubmit={handleSubmit}>
+            <h2 className="heading">Edit Profile</h2>
+  
+            <label>Email</label>
             <input
               type="email"
               name="email"
               value={userDetails.email || ""}
               disabled
             />
-          </label>
-
-          <label>
-            Name
+  
+            <label>Name</label>
             <input
               type="text"
               name="name"
               value={updatedDetails.name || ""}
               onChange={handleInputChange}
             />
-          </label>
-
-          <label>
-            Phone
+  
+            <label>Phone</label>
             <input
               type="text"
               name="phone"
               value={updatedDetails.phone || ""}
               onChange={handleInputChange}
             />
-          </label>
-
-          <button type="submit">Save</button>
-        </form>
-      ) : (
-        <div className="profile-details">
-          <h1>Welcome, {userDetails.name}</h1>
-          <p>
-            <b>Email:</b> {userDetails.email}
-          </p>
-          <p>
-            <b>Phone:</b> {userDetails.phone}
-          </p>
-          <button onClick={handleEdit}>Edit</button>
-        </div>
-      )}
+  
+            <button type="submit">Save</button>
+          </form>
+        ) : (
+          <div className="details">
+            <h2 className="heading">Welcome, {userDetails.name}</h2>
+            <p>
+              <b>Email:</b> {userDetails.email}
+            </p>
+            <p>
+              <b>Phone:</b> {userDetails.phone}
+            </p>
+            <button onClick={handleEdit}>Edit</button>
+          </div>
+        )}
+      </div>
     </div>
   );
+  
 };
 
 // Export the ProfileCard component

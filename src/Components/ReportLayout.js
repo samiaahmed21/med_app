@@ -1,38 +1,54 @@
-import React, { useState } from 'react';
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-import './ReportForm.css';
+import React, { useState } from "react";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import "./ReportLayout.css";
 
-const ReportForm = ({ reports }) => {
-  const [reportData, setReportData] = useState(reports);
-  const [formInput, setFormInput] = useState({ title: '', description: '', priority: 0 });
+const ReportLayout = ({ reports }) => {
+  // Example existing reports (replace with API/props later)
+  const defaultReports = [
+    {
+      title: "Blood Test",
+      category: "Lab",
+      submittedReport: {
+        title: "CBC Report",
+        description: "Blood count analysis",
+        priority: 4,
+      },
+    },
+    {
+      title: "X-Ray",
+      category: "Radiology",
+      submittedReport: {
+        title: "Chest X-Ray",
+        description: "Mild infection detected",
+        priority: 3,
+      },
+    },
+    {
+      title: "MRI Scan",
+      category: "Radiology",
+      submittedReport: {
+        title: "Brain MRI",
+        description: "No abnormalities found",
+        priority: 5,
+      },
+    },
+  ];
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormInput({ ...formInput, [name]: value });
-  };
+  const [reportData] = useState(reports || defaultReports);
 
-  const handlePriorityClick = (star) => {
-    setFormInput({ ...formInput, priority: star });
-  };
-
-  const handleSubmit = (e, index, closeModal) => {
-    e.preventDefault();
-    if (!formInput.title || !formInput.description || formInput.priority === 0) {
-      alert('Please fill all fields and select a priority!');
-      return;
-    }
-
-    const updatedReports = [...reportData];
-    updatedReports[index] = {
-      ...updatedReports[index],
-      reportSubmitted: true,
-      submittedReport: { ...formInput },
-    };
-
-    setReportData(updatedReports);
-    setFormInput({ title: '', description: '', priority: 0 });
-    closeModal();
+  // 📥 Download report as .txt
+  const handleDownload = (report) => {
+    const content = `
+Report Title: ${report.submittedReport.title}
+Description: ${report.submittedReport.description}
+Priority: ${"★".repeat(report.submittedReport.priority)}
+`;
+    const blob = new Blob([content], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `${report.title}_report.txt`;
+    link.click();
   };
 
   return (
@@ -44,8 +60,8 @@ const ReportForm = ({ reports }) => {
             <th>Serial Number</th>
             <th>Report Title</th>
             <th>Category</th>
-            <th>Submit Report</th>
-            <th>Report Submitted</th>
+            <th>View Report</th>
+            <th>Download Report</th>
           </tr>
         </thead>
         <tbody>
@@ -56,107 +72,44 @@ const ReportForm = ({ reports }) => {
               <td>{report.category}</td>
               <td>
                 <Popup
-                  trigger={
-                    <button
-                      disabled={report.reportSubmitted}
-                      className={report.reportSubmitted ? 'report-given' : ''}
-                    >
-                      {report.reportSubmitted ? 'Report Submitted' : 'Click Here'}
-                    </button>
-                  }
+                  trigger={<button className="view-btn">View Report</button>}
                   modal
                   nested
                   contentStyle={{
-                    background: 'white',
-                    padding: '10px',
-                    boxShadow: 'none',
-                    borderRadius: '0',
-                    width: '350px',
-                    maxWidth: '90%',
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
+                    background: "white",
+                    padding: "20px",
+                    borderRadius: "10px",
+                    width: "400px",
+                    maxWidth: "90%",
                   }}
                 >
-                  {(close) => (
-                    <div className="report-modal">
-                      <h3>Submit Your Report</h3>
-                      <form onSubmit={(e) => handleSubmit(e, index, close)}>
-                        <div className="form-group">
-                          <label>Title:</label>
-                          <input
-                            type="text"
-                            name="title"
-                            value={formInput.title}
-                            onChange={handleChange}
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Description:</label>
-                          <textarea
-                            name="description"
-                            value={formInput.description}
-                            onChange={handleChange}
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Priority:</label>
-                          <div className="star-rating">
-                            {[1, 2, 3, 4, 5].map((star) => (
-                              <span
-                                key={star}
-                                className={star <= formInput.priority ? 'filled' : ''}
-                                onClick={() => handlePriorityClick(star)}
-                                aria-label={`${star} star`}
-                              >
-                                ★
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                        <button type="submit" className="submit-btn">
-                          Submit
-                        </button>
-                      </form>
-                    </div>
-                  )}
+                  <div>
+                    <h3>{report.submittedReport.title}</h3>
+                    <p>
+                      <strong>Description:</strong>{" "}
+                      {report.submittedReport.description}
+                    </p>
+                    <p>
+                      <strong>Priority:</strong>{" "}
+                      {"★".repeat(report.submittedReport.priority)}
+                    </p>
+                  </div>
                 </Popup>
               </td>
               <td>
-                {report.reportSubmitted && report.submittedReport
-                  ? report.submittedReport.description
-                  : 'No'}
+                <button
+                  className="download-btn"
+                  onClick={() => handleDownload(report)}
+                >
+                  Download Report
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-
-      {reportData.map(
-        (report, idx) =>
-          report.reportSubmitted && report.submittedReport && (
-            <div key={idx} className="submitted-report">
-              <h4>Report for {report.title}</h4>
-              <p>
-                <strong>Title:</strong> {report.submittedReport.title}
-              </p>
-              <p>
-                <strong>Description:</strong> {report.submittedReport.description}
-              </p>
-              <p>
-                <strong>Priority:</strong>{' '}
-                {Array.from({ length: report.submittedReport.priority }, (_, i) => (
-                  <span key={i} className="filled">
-                    ★
-                  </span>
-                ))}
-              </p>
-            </div>
-          )
-      )}
     </div>
   );
 };
 
-export default ReportForm;
+export default ReportLayout;

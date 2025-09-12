@@ -22,44 +22,36 @@ nav {
 .dropdown-menu {
     position: absolute;
     top: 100%;
-    left: 0;
+    right: 0; /* Align to the right of the welcome-user */
+    transform: translateX(20px); /* Shift left slightly within the viewport */
     z-index: 1;
-    display: none;
-    min-width: 120px;
+    min-width: 150px;
     padding: 8px 0;
     background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    border: 1px solid #808080;
+    list-style: none;
+    display: block; /* Ensure it’s visible when shown */
+}
+
+/* Styling for items in the dropdown menu */
+.dropdown-menu li {
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-menu li:hover {
+    background-color: #f0f0f0;
 }
 
 /* Styling for the user welcome message */
 .welcome-user {
     position: relative;
     cursor: pointer;
-}
-
-/* Display dropdown menu on hover */
-.welcome-user:hover .dropdown-menu {
-    display: block;
-}
-
-/* Styling for the items in the dropdown menu */
-.dropdown-menu li {
-    display: block;
-    width: 150px;
-    padding: 5px;
-}
-
-/* Styling for links in the dropdown menu */
-.dropdown-menu li a {
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-/* Hover effect for links in the dropdown menu */
-.dropdown-menu li a:hover {
-    color: #2190ff;
 }
 
 /* Styling for the logo in the navbar */
@@ -135,7 +127,7 @@ nav {
         border-radius: 0.5rem;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         z-index: 999;
-        animation: slideDown 0.5s ease-in-out; /* Animation effect */
+        animation: slideDown 0.5s ease-in-out;
     }
 }
 
@@ -160,82 +152,6 @@ nav {
 }
 
 .btn1:hover {
-    background-color: #3685fb; /* Hover effect */
-    color: white; /* Hover effect */
-}
-
-.btn2 {
-    border: 2px solid #3685fb;
-    background-color: white;
-    color: black;
-    border-radius: 50px;
-    height: 30px;
-    display: flex; /* Align items and justify content */
-    align-items: center; /* Align items and justify content */
-    justify-content: center; /* Align items and justify content */
-    margin-top: 3px; /* Margin from top */
-}
-
-.btn2:hover {
-    background-color: #3685fb; /* Hover effect */
-    color: white; /* Hover effect */
-}
-
-/* Styles for the profile card (shown on click) */
-.profile-card {
-    position: absolute;
-    top: 110%; /* Move down slightly (adjust as needed) */
-    right: 0; /* Anchor to the right of the welcome-user */
-    transform: translateX(20px); /* Shift left slightly within the viewport */
-    z-index: 1;
-    min-width: 250px; /* Increased width for better content fit */
-    padding: 15px; /* Added padding inside the card */
-    background-color: #fff;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
-    border-radius: 8px; /* Slightly larger border radius */
-    border: 1px solid #808080; /* Grey border */
-    display: none; /* Hidden by default */
-    font-family: Arial, sans-serif; /* Consistent font */
-}
-
-/* Ensure profile card is shown when active */
-.profile-card.active {
-    display: block; /* Shown when active class is added */
-}
-
-/* Style for individual profile fields */
-.profile-card label {
-    display: block;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 5px;
-    padding-left: 10px; /* Align text slightly */
-}
-
-.profile-card input[type="text"],
-.profile-card input[type="email"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-/* Style for the save button */
-.profile-card button {
-    width: 100%;
-    padding: 10px;
-    background-color: #2190ff;
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.profile-card button:hover {
-    background-color: #1976d2; /* Darker blue on hover */
+    background-color: #3685fb;
+    color: white;
 }

@@ -2,7 +2,7 @@
 .report-container {
     width: 90%;
     max-width: 800px; /* prevent excessive width on large screens */
-    margin: 20px auto;
+    margin: 100px auto 20px auto; /* ⬅️ added top margin (100px) */
     font-family: Arial, sans-serif;
 }
 
